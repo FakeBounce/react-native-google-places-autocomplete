@@ -299,6 +299,8 @@ export default class GooglePlacesAutocomplete extends Component {
         rows[i].isLoading = true;
         this.setState({
           dataSource: rows,
+        }, () => {
+          this._returnDataLength(this.state.dataSource);
         });
         break;
       }
@@ -315,6 +317,8 @@ export default class GooglePlacesAutocomplete extends Component {
 
       this.setState({
         dataSource: this.buildRowsFromResults(this._results),
+      }, () => {
+        this._returnDataLength(this.state.dataSource);
       });
     }
   }
@@ -517,6 +521,13 @@ export default class GooglePlacesAutocomplete extends Component {
     }
 
     return rowData.description || rowData.formatted_address || rowData.name;
+  }
+
+  _returnDataLength = (rowData) => {
+    if (this.props.returnDataLength) {
+      return this.props.returnDataLength(rowData.length);
+    }
+    return rowData.length;
   }
 
   _renderLoader = (rowData) => {
