@@ -447,6 +447,8 @@ export default class GooglePlacesAutocomplete extends Component {
               this._results = responseJSON.predictions;
               this.setState({
                 dataSource: this.buildRowsFromResults(responseJSON.predictions),
+              }, () => {
+                this._returnDataLength(this.state.dataSource);
               });
             }
           }
@@ -467,6 +469,8 @@ export default class GooglePlacesAutocomplete extends Component {
       this._results = [];
       this.setState({
         dataSource: this.buildRowsFromResults([]),
+      }, () => {
+        this._returnDataLength(this.state.dataSource);
       });
     }
   }
