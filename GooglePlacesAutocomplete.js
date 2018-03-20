@@ -469,7 +469,7 @@ export default class GooglePlacesAutocomplete extends Component {
   
   _request = text => {
     this._abortRequests();
-    if (text.length >= this.props.minLength && !this.state.isPressing) {
+    if (text.length >= this.props.minLength && !this.state.isPressing && this.state.listViewDisplayed) {
       const request = new XMLHttpRequest();
       this._requests.push(request);
       request.timeout = this.props.timeout;
