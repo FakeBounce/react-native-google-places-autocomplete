@@ -564,19 +564,19 @@ export default class GooglePlacesAutocomplete extends Component {
     
     return (
       <Text
-        style={[
-          { flex: 1 },
-          this.props.suppressDefaultStyles ? {} : defaultStyles.description,
-          this.props.styles.description,
-          rowData.isPredefinedPlace
-            ? this.props.styles.predefinedPlacesDescription
-            : {},
-        ]}
-        numberOfLines={1}
+    style={[
+        { flex: 1 },
+      this.props.suppressDefaultStyles ? {} : defaultStyles.description,
+      this.props.styles.description,
+      rowData.isPredefinedPlace
+        ? this.props.styles.predefinedPlacesDescription
+        : {},
+  ]}
+    numberOfLines={1}
       >
-        {this._renderDescription(rowData)}
-      </Text>
-    );
+      {this._renderDescription(rowData)}
+  </Text>
+  );
   };
   
   _renderDescription = rowData => {
@@ -598,14 +598,14 @@ export default class GooglePlacesAutocomplete extends Component {
     if (rowData.isLoading === true) {
       return (
         <View
-          style={[
-            this.props.suppressDefaultStyles ? {} : defaultStyles.loader,
-            this.props.styles.loader,
-          ]}
-        >
-          {this._getRowLoader()}
-        </View>
-      );
+      style={[
+          this.props.suppressDefaultStyles ? {} : defaultStyles.loader,
+        this.props.styles.loader,
+    ]}
+    >
+      {this._getRowLoader()}
+    </View>
+    );
     }
     
     return null;
@@ -614,31 +614,31 @@ export default class GooglePlacesAutocomplete extends Component {
   _renderRow = (rowData = {}, sectionID, rowID) => {
     return (
       <ScrollView
-        style={{ flex: 1 }}
-        scrollEnabled={this.props.isRowScrollable}
-        keyboardShouldPersistTaps={this.props.keyboardShouldPersistTaps}
-        horizontal={true}
-        showsHorizontalScrollIndicator={false}
-        showsVerticalScrollIndicator={false}
+    style={{ flex: 1 }}
+    scrollEnabled={this.props.isRowScrollable}
+    keyboardShouldPersistTaps={this.props.keyboardShouldPersistTaps}
+    horizontal={true}
+    showsHorizontalScrollIndicator={false}
+    showsVerticalScrollIndicator={false}
       >
-        <TouchableHighlight
-          style={{ width: WINDOW.width }}
-          onPress={() => this._onPress(rowData)}
-          underlayColor={this.props.listUnderlayColor || '#c8c7cc'}
-        >
-          <View
-            style={[
-              this.props.suppressDefaultStyles ? {} : defaultStyles.row,
-              this.props.styles.row,
-              rowData.isPredefinedPlace ? this.props.styles.specialItemRow : {},
-            ]}
-          >
-            {this._renderRowData(rowData)}
-            {this._renderLoader(rowData)}
-          </View>
-        </TouchableHighlight>
-      </ScrollView>
-    );
+      <TouchableHighlight
+    style={{ width: WINDOW.width }}
+    onPress={() => this._onPress(rowData)}
+    underlayColor={this.props.listUnderlayColor || '#c8c7cc'}
+  >
+  <View
+    style={[
+        this.props.suppressDefaultStyles ? {} : defaultStyles.row,
+      this.props.styles.row,
+      rowData.isPredefinedPlace ? this.props.styles.specialItemRow : {},
+  ]}
+  >
+    {this._renderRowData(rowData)}
+    {this._renderLoader(rowData)}
+  </View>
+    </TouchableHighlight>
+    </ScrollView>
+  );
   };
   
   _renderSeparator = (sectionID, rowID) => {
@@ -648,13 +648,13 @@ export default class GooglePlacesAutocomplete extends Component {
     
     return (
       <View
-        key={`${sectionID}-${rowID}`}
-        style={[
-          this.props.suppressDefaultStyles ? {} : defaultStyles.separator,
-          this.props.styles.separator,
-        ]}
-      />
-    );
+    key={`${sectionID}-${rowID}`}
+    style={[
+        this.props.suppressDefaultStyles ? {} : defaultStyles.separator,
+      this.props.styles.separator,
+  ]}
+    />
+  );
   };
   
   _onBlur = () => {
@@ -674,22 +674,22 @@ export default class GooglePlacesAutocomplete extends Component {
     
     return (
       <View
-        style={[
-          this.props.suppressDefaultStyles ? {} : defaultStyles.row,
-          defaultStyles.poweredContainer,
-          this.props.styles.poweredContainer,
-        ]}
-      >
-        <Image
-          style={[
-            this.props.suppressDefaultStyles ? {} : defaultStyles.powered,
-            this.props.styles.powered,
-          ]}
-          resizeMode={Image.resizeMode.contain}
-          source={require('./images/powered_by_google_on_white.png')}
-        />
-      </View>
-    );
+    style={[
+        this.props.suppressDefaultStyles ? {} : defaultStyles.row,
+      defaultStyles.poweredContainer,
+      this.props.styles.poweredContainer,
+  ]}
+  >
+  <Image
+    style={[
+        this.props.suppressDefaultStyles ? {} : defaultStyles.powered,
+      this.props.styles.powered,
+  ]}
+    resizeMode={Image.resizeMode.contain}
+    source={require('./images/powered_by_google_on_white.png')}
+    />
+    </View>
+  );
   };
   
   _shouldShowPoweredLogo = () => {
@@ -740,19 +740,19 @@ export default class GooglePlacesAutocomplete extends Component {
     ) {
       return (
         <FlatList
-          style={[
-            this.props.suppressDefaultStyles ? {} : defaultStyles.listView,
-            this.props.styles.listView,
-          ]}
-          data={this.state.dataSource}
-          keyExtractor={keyGenerator}
-          extraData={[this.state.dataSource, this.props]}
-          ItemSeparatorComponent={this._renderSeparator}
-          renderItem={({ item }) => this._renderRow(item)}
-          ListFooterComponent={this._renderPoweredLogo}
-          {...this.props}
-        />
-      );
+      style={[
+          this.props.suppressDefaultStyles ? {} : defaultStyles.listView,
+        this.props.styles.listView,
+    ]}
+      data={this.state.dataSource}
+      keyExtractor={keyGenerator}
+      extraData={[this.state.dataSource, this.props]}
+      ItemSeparatorComponent={this._renderSeparator}
+      renderItem={({ item }) => this._renderRow(item)}
+      ListFooterComponent={this._renderPoweredLogo}
+      {...this.props}
+      />
+    );
     }
     
     return null;
@@ -761,53 +761,54 @@ export default class GooglePlacesAutocomplete extends Component {
     let { onFocus, ...userProps } = this.props.textInputProps;
     return (
       <View
-        style={[
-          this.props.suppressDefaultStyles ? {} : defaultStyles.container,
-          this.props.styles.container,
-        ]}
-        pointerEvents="box-none"
+    style={[
+        this.props.suppressDefaultStyles ? {} : defaultStyles.container,
+      this.props.styles.container,
+  ]}
+    pointerEvents="box-none"
       >
-        {!this.props.textInputHide && (
-          <View
-            style={[
-              this.props.suppressDefaultStyles
-                ? {}
-                : defaultStyles.textInputContainer,
-              this.props.styles.textInputContainer,
-            ]}
-          >
-            {this._renderLeftButton()}
-            <TextInput
-              ref="textInput"
-              returnKeyType={this.props.returnKeyType}
-              autoFocus={this.props.autoFocus}
-              style={[
-                this.props.suppressDefaultStyles ? {} : defaultStyles.textInput,
-                this.props.styles.textInput,
-              ]}
-              value={this.state.text}
-              placeholder={this.props.placeholder}
-              placeholderTextColor={this.props.placeholderTextColor}
-              onFocus={
-                onFocus
-                  ? () => {
-                    this._onFocus();
-                    onFocus();
-                  }
-                  : this._onFocus
-              }
-              clearButtonMode="while-editing"
-              underlineColorAndroid={this.props.underlineColorAndroid}
-              {...userProps}
-              onChangeText={this._handleChangeText}
-            />
-            {this._renderRightButton()}
-          </View>
-        )}
-        {this._getFlatList()}
-        {this.props.children}
-      </View>
-    );
+      {!this.props.textInputHide && (
+    <View
+    style={[
+        this.props.suppressDefaultStyles
+          ? {}
+          : defaultStyles.textInputContainer,
+      this.props.styles.textInputContainer,
+  ]}
+  >
+    {this._renderLeftButton()}
+  <TextInput
+    ref="textInput"
+    returnKeyType={this.props.returnKeyType}
+    autoFocus={this.props.autoFocus}
+    style={[
+        this.props.suppressDefaultStyles ? {} : defaultStyles.textInput,
+      this.props.styles.textInput,
+  ]}
+    value={this.state.text}
+    placeholder={this.props.placeholder}
+    placeholderTextColor={this.props.placeholderTextColor}
+    onFocus={
+      onFocus
+          ? () => {
+          this._onFocus();
+          onFocus();
+        }
+        : this._onFocus
+    }
+    clearButtonMode="while-editing"
+    underlineColorAndroid={this.props.underlineColorAndroid}
+    {...userProps}
+    onChangeText={this._handleChangeText}
+    onChange={e => this.props.onChange(e)}
+    />
+    {this._renderRightButton()}
+  </View>
+  )}
+    {this._getFlatList()}
+    {this.props.children}
+  </View>
+  );
   }
 }
 
@@ -850,6 +851,7 @@ GooglePlacesAutocomplete.propTypes = {
   text: PropTypes.string,
   textInputHide: PropTypes.bool,
   suppressDefaultStyles: PropTypes.bool,
+  onChange: PropTypes.func,
 };
 GooglePlacesAutocomplete.defaultProps = {
   placeholder: 'Search',
@@ -893,6 +895,7 @@ GooglePlacesAutocomplete.defaultProps = {
   debounce: 0,
   textInputHide: false,
   suppressDefaultStyles: false,
+  onChange: () => {},
 };
 
 // this function is still present in the library to be retrocompatible with version < 1.1.0
@@ -901,7 +904,7 @@ const create = function create(options = {}) {
     render() {
       return (
         <GooglePlacesAutocomplete ref="GooglePlacesAutocomplete" {...options} />
-      );
+    );
     },
   });
 };
