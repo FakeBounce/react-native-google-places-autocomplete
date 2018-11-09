@@ -129,7 +129,7 @@ export default class GooglePlacesAutocomplete extends Component {
     ) {
       this.setState(
         {
-          listViewDisplayed: false,
+          listViewDisplayed: true,
         },
         this._handleChangeText(nextProps.text)
       );
@@ -659,9 +659,13 @@ export default class GooglePlacesAutocomplete extends Component {
   
   _onBlur = () => {
     this.triggerBlur();
-    
+  
+    this._results = [];
     this.setState({
       listViewDisplayed: false,
+      dataSource: this.buildRowsFromResults([]),
+    }, () => {
+      this._returnDataLength(this.state.dataSource);
     });
   };
   
@@ -759,6 +763,7 @@ export default class GooglePlacesAutocomplete extends Component {
   };
   render() {
     let { onFocus, ...userProps } = this.props.textInputProps;
+    let { listViewDisplayed } = this.state;
     return (
       <View
     style={[
@@ -777,7 +782,7 @@ export default class GooglePlacesAutocomplete extends Component {
   ]}
   >
     {this._renderLeftButton()}
-  <TextInput
+    <TextInput
     ref="textInput"
     returnKeyType={this.props.returnKeyType}
     autoFocus={this.props.autoFocus}
@@ -796,6 +801,7 @@ export default class GooglePlacesAutocomplete extends Component {
         }
         : this._onFocus
     }
+    onBlur={this._onBlur}
     clearButtonMode="while-editing"
     underlineColorAndroid={this.props.underlineColorAndroid}
     {...userProps}
@@ -805,7 +811,9 @@ export default class GooglePlacesAutocomplete extends Component {
     {this._renderRightButton()}
   </View>
   )}
-    {this._getFlatList()}
+  {listViewDisplayed &&
+    this._getFlatList()
+  }
     {this.props.children}
   </View>
   );
